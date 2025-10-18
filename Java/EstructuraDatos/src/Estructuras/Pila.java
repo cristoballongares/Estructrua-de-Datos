@@ -25,7 +25,7 @@ public class Pila<T> {
         
         Nodo(T dato){
             this.dato = dato;
-            this.sig = null;
+            this.sig = null; // ant(?
         }
     }
     
