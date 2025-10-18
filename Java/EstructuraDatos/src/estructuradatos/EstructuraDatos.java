@@ -4,6 +4,8 @@
  */
 package estructuradatos;
 
+import Estructuras.Pila;
+
 /**
  *
  * @author crist
@@ -14,7 +16,10 @@ public class EstructuraDatos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Pila<Integer> s = new Pila<>();
+        
+      
+        
     }
     
 }
