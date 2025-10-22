@@ -18,7 +18,7 @@ public class EstructuraDatos {
     public static void main(String[] args) {
         Pila<Integer> s = new Pila<>();
         
-      
+    
         
     }
     
