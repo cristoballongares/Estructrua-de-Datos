@@ -17,6 +17,10 @@ public class Polinomio{
         int coeficiente, exponente;
         Monomio izq, der;
       
+        public Monomio(){
+            izq=der=null;
+        }
+        
         public Monomio(int cof, int exp){
             coeficiente = cof;
             exponente = exp;
@@ -39,6 +43,19 @@ public class Polinomio{
         this.fin = null;
     }
     
+    public void insertarMonomio(int c,int e){
+        Monomio x = new Monomio(c,e);
+        
+        if(inicio == null && fin == null){
+            inicio=fin=x;
+        } else if(fin!=null){
+            x.izq=fin;
+            x.der=null;
+            fin.der=x;
+            fin=x;
+        }
+    }
+    
     public void eliminarMonomio(Monomio x){
         
         if(inicio!=null && fin!=null){
@@ -50,11 +67,13 @@ public class Polinomio{
             // Al inicio del poliniomio
             else if(x.izq == null && x.der!=null){
                 inicio = x.der; // Actualizamos la cabeza del Polinomio
+                inicio.izq=null;
                 x.der=null; // Desvinculamos totalmente el monomio de exponente 0
             }
             // Al final del polinomio
             else if(x.izq !=null && x.der == null){
                fin = x.izq; // Actualizamos el final del polinomio
+               fin.der = null; // Desvinculamos totalmente el monomio de exponente 0
                x.izq = null; // Desvinculamos totalmente el monomio de exponente 0
             }
             // En medio de monomios
@@ -90,13 +109,19 @@ public class Polinomio{
             
             actual = actual.der;
         }
-        
+        JOptionPane.showMessageDialog(null, "Polinomio derivado!");
+        mostrarPolinomio();
+    }
+    
+    public void mostrarPolinomio(){
         String msg = "Polinomio obtenido: \n";
-        
-        actual = inicio;
+        Monomio actual = inicio;
         if(actual!=null){
             while(actual!=null){
                 msg+= "<- "+actual.coeficiente+"^("+actual.exponente+") -> ";
+            
+                actual = actual.der;
+            
             }
         }
         
