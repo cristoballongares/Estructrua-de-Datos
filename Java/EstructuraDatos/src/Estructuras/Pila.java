@@ -43,7 +43,7 @@ public class Pila<T> {
     public boolean empty(){
         return this.cima==null;
     }
-    
+
     public void push(T dato){
         Nodo<T> nuevoNodo = new Nodo<>(dato);
         // El nuevo nodo depe apuntar a la cima antigua
