@@ -28,7 +28,7 @@ public class ProgramaPolinomio {
                 + "3.- Derivar polinomio\n"
                 + "4.- Salir\n"
                 + "Escriba el numero de la operacion:";
-        
+    
         do{
             
             opt=Integer.parseInt(JOptionPane.showInputDialog(msg));

@@ -43,18 +43,34 @@ public class Polinomio{
         this.fin = null;
     }
     
-    public void insertarMonomio(int c,int e){
-        Monomio x = new Monomio(c,e);
-        
-        if(inicio == null && fin == null){
-            inicio=fin=x;
-        } else if(fin!=null){
-            x.izq=fin;
-            x.der=null;
-            fin.der=x;
-            fin=x;
+    public void insertarMonomio(int c, int e) {
+        Monomio nuevo = new Monomio(c, e);
+        if (inicio == null) {
+            inicio = fin = nuevo;
+            return;
         }
-    }
+        // Instertamos manteniendo el orden descendente del exponente
+        Monomio actual = inicio;
+        while (actual != null && actual.exponente > e) actual = actual.der;
+
+        if (actual == null) { // insertar al final
+            fin.der = nuevo;
+            nuevo.izq = fin;
+            fin = nuevo;
+        } else if (actual.exponente == e) {
+            actual.coeficiente += c; // combinamos monomios con mismo exponente
+        } else if (actual == inicio) {
+            nuevo.der = inicio;
+            inicio.izq = nuevo;
+            inicio = nuevo;
+        } else {
+            nuevo.izq = actual.izq;
+            nuevo.der = actual;
+            actual.izq.der = nuevo;
+            actual.izq = nuevo;
+        }
+}
+
     
     public void eliminarMonomio(Monomio x){
         
@@ -99,17 +115,24 @@ public class Polinomio{
         }
         
         Monomio actual = inicio;
-        
+        System.out.println("Cabeza: "+fin.coeficiente);
         while(actual!=null){
+            System.out.println("Derivando: "+actual.coeficiente+" ^ "+actual.exponente);
             // Multiplicar exponente por el coeficiente
             actual.coeficiente=actual.coeficiente*actual.exponente;
-            actual.exponente--;  
-           
-            if(actual.exponente == 0) eliminarMonomio(actual);
+            actual.exponente--;
+
+            Monomio sig = actual.der;
             
-            actual = actual.der;
+            if(actual.exponente == 0) eliminarMonomio(actual);
+
+            actual = sig;
         }
         JOptionPane.showMessageDialog(null, "Polinomio derivado!");
+        if(inicio==null){
+            JOptionPane.showMessageDialog(null, "El polinomio se quedo sin terminos:(!");
+            return ;
+        }
         mostrarPolinomio();
     }
     
