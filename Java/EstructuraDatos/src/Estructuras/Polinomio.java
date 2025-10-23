@@ -124,7 +124,7 @@ public class Polinomio{
 
             Monomio sig = actual.der;
             
-            if(actual.exponente == 0) eliminarMonomio(actual);
+            if(actual.exponente == -1) eliminarMonomio(actual);
 
             actual = sig;
         }
