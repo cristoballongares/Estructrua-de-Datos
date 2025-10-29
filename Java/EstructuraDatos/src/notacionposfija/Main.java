@@ -1,6 +1,5 @@
 package notacionposfija;
 
-<<<<<<< HEAD
 import java.util.*;
 import Estructuras.Pila; // proud of using it
 import javax.swing.JOptionPane;
@@ -8,10 +7,8 @@ import javax.swing.JOptionPane;
  *
  * @author crist
  */
-=======
 import Estructuras.Pila;
 
->>>>>>> 41229317870969bc653c11e26538bd0ca309f0c4
 public class Main {
 
     public static int prioridadDentro(char op) {
@@ -45,7 +42,6 @@ public class Main {
     public static String conversionInPost(String infija) {
         String expr = "";
         Pila<Character> s = new Pila<>();
-<<<<<<< HEAD
         
         for(char v:infija.toCharArray()){
            // 1.- Obtener caracteres
@@ -63,9 +59,7 @@ public class Main {
                if(s.size()==0){
                  // 3.1 - Si la pila esta vacia, lo metemos en esta. Regresamos al paso 1
                  s.push(v);
-=======
 
-        for (char v : infija.toCharArray()) {
             if (v == ' ') continue; // ignorar espacios
 
             if (esOperando(v)) {
@@ -78,7 +72,6 @@ public class Main {
                 // vaciar hasta el '('
                 while (!s.empty() && s.peek() != '(') {
                     expr += s.pop();
->>>>>>> 41229317870969bc653c11e26538bd0ca309f0c4
                 }
                 if (!s.empty()) s.pop(); // eliminar el '('
             }
@@ -102,14 +95,11 @@ public class Main {
 
         return expr;
     }
-
+    }
     public static void main(String[] args) {
-<<<<<<< HEAD
         
            
         
-=======
         System.out.println(conversionInPost("(-b+((b^2)-4*a*c)^(1/2))/(2*a)"));
->>>>>>> 41229317870969bc653c11e26538bd0ca309f0c4
     }
 }
