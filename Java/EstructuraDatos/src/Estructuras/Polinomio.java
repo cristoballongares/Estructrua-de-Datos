@@ -17,6 +17,10 @@ public class Polinomio{
         int coeficiente, exponente;
         Monomio izq, der;
       
+        public Monomio(){
+            izq=der=null;
+        }
+        
         public Monomio(int cof, int exp){
             coeficiente = cof;
             exponente = exp;
@@ -39,6 +43,35 @@ public class Polinomio{
         this.fin = null;
     }
     
+    public void insertarMonomio(int c, int e) {
+        Monomio nuevo = new Monomio(c, e);
+        if (inicio == null) {
+            inicio = fin = nuevo;
+            return;
+        }
+        // Instertamos manteniendo el orden descendente del exponente
+        Monomio actual = inicio;
+        while (actual != null && actual.exponente > e) actual = actual.der;
+
+        if (actual == null) { // insertar al final
+            fin.der = nuevo;
+            nuevo.izq = fin;
+            fin = nuevo;
+        } else if (actual.exponente == e) {
+            actual.coeficiente += c; // combinamos monomios con mismo exponente
+        } else if (actual == inicio) {
+            nuevo.der = inicio;
+            inicio.izq = nuevo;
+            inicio = nuevo;
+        } else {
+            nuevo.izq = actual.izq;
+            nuevo.der = actual;
+            actual.izq.der = nuevo;
+            actual.izq = nuevo;
+        }
+}
+
+    
     public void eliminarMonomio(Monomio x){
         
         if(inicio!=null && fin!=null){
@@ -50,11 +83,13 @@ public class Polinomio{
             // Al inicio del poliniomio
             else if(x.izq == null && x.der!=null){
                 inicio = x.der; // Actualizamos la cabeza del Polinomio
+                inicio.izq=null;
                 x.der=null; // Desvinculamos totalmente el monomio de exponente 0
             }
             // Al final del polinomio
             else if(x.izq !=null && x.der == null){
                fin = x.izq; // Actualizamos el final del polinomio
+               fin.der = null; // Desvinculamos totalmente el monomio de exponente 0
                x.izq = null; // Desvinculamos totalmente el monomio de exponente 0
             }
             // En medio de monomios
@@ -80,23 +115,36 @@ public class Polinomio{
         }
         
         Monomio actual = inicio;
-        
+        System.out.println("Cabeza: "+fin.coeficiente);
         while(actual!=null){
+            System.out.println("Derivando: "+actual.coeficiente+" ^ "+actual.exponente);
             // Multiplicar exponente por el coeficiente
             actual.coeficiente=actual.coeficiente*actual.exponente;
-            actual.exponente--;  
-           
-            if(actual.exponente == 0) eliminarMonomio(actual);
+            actual.exponente--;
+
+            Monomio sig = actual.der;
             
-            actual = actual.der;
+            if(actual.exponente == -1) eliminarMonomio(actual);
+
+            actual = sig;
         }
-        
+        JOptionPane.showMessageDialog(null, "Polinomio derivado!");
+        if(inicio==null){
+            JOptionPane.showMessageDialog(null, "El polinomio se quedo sin terminos:(!");
+            return ;
+        }
+        mostrarPolinomio();
+    }
+    
+    public void mostrarPolinomio(){
         String msg = "Polinomio obtenido: \n";
-        
-        actual = inicio;
+        Monomio actual = inicio;
         if(actual!=null){
             while(actual!=null){
                 msg+= "<- "+actual.coeficiente+"^("+actual.exponente+") -> ";
+            
+                actual = actual.der;
+            
             }
         }
         
