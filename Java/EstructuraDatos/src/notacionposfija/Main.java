@@ -6,6 +6,7 @@ package notacionposfija;
 
 import java.util.*;
 import Estructuras.Pila; // proud of using it
+import javax.swing.JOptionPane;
 /**
  *
  * @author crist
@@ -44,7 +45,7 @@ public class Main {
         for(char v:infija.toCharArray()){
            // 1.- Obtener caracteres
            int x = v;
-           if(x>=48 && x<=57) expr+=v; // 2.- Si es un operando, lo pasamos a nuestra expresion postfija
+           if(x>=48 && x<=57) expr+=v;
            else if(v=='(') s.push(v);
            else if(v==')'){ // 3.- Si es un operador...
                 while(!s.empty() && s.peek()!='('){
@@ -82,14 +83,7 @@ public class Main {
     
     public static void main(String[] args) {
         
-        String x ="0123456789";  // 48 - 57 ASCII NUMEROS 
-//        for(char a:x.toCharArray()){
-//            int b = a;
-//            System.out.println(b);
-//        }
-
-        System.out.println(conversionInPost("5*(3-(1+2)/3)^2"));
-
+           
         
     }
     
