@@ -4,6 +4,7 @@
  */
 package programas;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,6 +19,10 @@ public class ArbolPane extends javax.swing.JPanel {
     /**
      * Creates new form ArbolPane
      */
+    
+    public int radio = 20;
+    public int mitadRadio = radio/2;
+    
     public ArbolPane() {
         initComponents();
     }
@@ -30,15 +35,21 @@ public class ArbolPane extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D)g;
     
        // fillOval(x,y, ancho, alto)
-        g2d.fillOval(getWidth()/2, 10, 30, 30);
+       g2d.setColor(Color.red);
+       g2d.drawLine(getWidth()/2, 10,getWidth()/2, 40);
+              
+       g2d.setColor(Color.black);
+       g2d.setStroke(new BasicStroke(2));
+       g2d.fillOval(getWidth()/2-15, 10, 30, 30); 
+    
         
-        
-        
+       g2d.setStroke(new BasicStroke(2));
+       g2d.setColor(Color.BLACK);
        // drawLine(Px1,Py1, Px2, Py2)
        // Dibujar linea de Punto(x1,y1) a Punto(x2,y2)
-        g2d.drawLine(getWidth()/2,50, (getWidth()/2)-30, 70);
+       g2d.drawLine(getWidth()/2,50, (getWidth()/2)-30, 70);
         
-        g2d.drawLine(getWidth()/2,50, (getWidth()/2)+30, 70);
+       g2d.drawLine(getWidth()/2,50, (getWidth()/2)+30, 70);
         
     
     }
