@@ -1,5 +1,7 @@
-package pilas;
+package estructuras;
 
+import autorreferencia.Nodo;
+import pilas.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 

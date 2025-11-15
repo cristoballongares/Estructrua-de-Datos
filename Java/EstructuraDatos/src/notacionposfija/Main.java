@@ -81,12 +81,12 @@ public class Main {
                     expr += s.pop();
                 }
                 s.push(v);
-            }
-            else {
+            } else {
                 // ignorar caracteres desconocidos
+                }
             }
-        }
-
+        }   
+    }
         // vaciar pila (sin meter '(')
         while (!s.empty()) {
             char top = s.pop();
@@ -95,11 +95,8 @@ public class Main {
 
         return expr;
     }
-    }
+}
     public static void main(String[] args) {
-        
-           
-        
         System.out.println(conversionInPost("(-b+((b^2)-4*a*c)^(1/2))/(2*a)"));
     }
 }

@@ -1,4 +1,6 @@
-package pilas;
+package autorreferencia;
+
+import pilas.*;
 
 /**
  *
@@ -31,7 +33,7 @@ public class Nodo <T> {
 
     @Override
     public String toString() {
-        return ""+elemento + "\n" + siguiente; 
+        return ""+elemento + "->" + siguiente; 
     }
     
     

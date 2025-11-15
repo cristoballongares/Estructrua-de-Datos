@@ -4,6 +4,7 @@
  */
 package programas;
 
+import java.util.Stack;
 import javax.swing.JOptionPane;
 import pilas.Pila;
 
@@ -11,12 +12,12 @@ import pilas.Pila;
  *
  * @author crist
  */
-public class Prueba extends javax.swing.JFrame {
+public class InfijoAPostfijo extends javax.swing.JFrame {
 
     /**
      * Creates new form
      */
-    public Prueba() {
+    public InfijoAPostfijo() {
         initComponents();
     }
 
@@ -116,21 +117,23 @@ public class Prueba extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfijoAPostfijo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfijoAPostfijo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfijoAPostfijo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InfijoAPostfijo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Prueba().setVisible(true);
+                new InfijoAPostfijo().setVisible(true);
             }
         });
     }
@@ -165,7 +168,7 @@ public class Prueba extends javax.swing.JFrame {
 
     public static String conversionInPost(String infija) {
         String expr = "";
-        Pila<Character> s = new Pila<>();
+        Stack<Character> s = new Stack<>();
 
         for (char v : infija.toCharArray()) {
             if (v == ' ') continue; // ignorar espacios
@@ -178,14 +181,14 @@ public class Prueba extends javax.swing.JFrame {
             }
             else if (v == ')') {
                 // vaciar hasta el (
-                while (!s.isEmpty() && s.getTop() != '(') {
+                while (!s.isEmpty() && s.peek() != '(') {
                     expr += s.pop();
                 }
                 if (!s.isEmpty()) s.pop(); // eliminar el (
             }
             else if (esOperador(v)) {
                 // tratar operadores con prioridad
-                while (!s.isEmpty() && prioridadFuera(v) <= prioridadDentro(s.getTop())) {
+                while (!s.isEmpty() && prioridadFuera(v) <= prioridadDentro(s.peek())) {
                     expr += s.pop();
                 }
                 s.push(v);

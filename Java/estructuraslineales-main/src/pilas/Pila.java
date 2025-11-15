@@ -1,5 +1,6 @@
 package pilas;
 
+import autorreferencia.Nodo;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -45,11 +46,16 @@ public class Pila <T>{
     }
     
     public ArrayList<T> getNodos(){
-        ArrayList a = new ArrayList();
-        String datos = "" + top;
-        String [] arr = datos.split("\n");
-        a.addAll(Arrays.asList(arr));
-        return a;
+        ArrayList<T> lista = new ArrayList<>();
+        Nodo<T> actual = top;
+
+        while (actual != null) {
+            lista.add(actual.getElemento());
+            actual = actual.getSiguiente();
+        }
+  
+        return lista;
+
     }
     
     public void resetear(boolean op){

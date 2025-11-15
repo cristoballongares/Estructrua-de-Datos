@@ -9,6 +9,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import pilas.Pila;
 
 /**
@@ -31,24 +32,27 @@ public class PanelPila extends javax.swing.JPanel {
     }
 
     @Override
-    public void paintComponent(Graphics g){
-  super.paintComponents(g);
-  Graphics2D g2d=(Graphics2D)g;
-  g2d.setColor(Color.WHITE);
-  g2d.fillRect(0,0,400,200);
-  g2d.setColor(Color.BLACK);
-  g2d.setStroke(new BasicStroke(2));
-  g2d.drawString("tope",2*x+10, y-10 );
-  for(int i=0;i<pila.size();i++){
-   if(i!=0){
-    g2d.drawLine(2*x*(i+1)-10, y+15, 2*x*(i+1), y+15);
-   }
-   g2d.drawRoundRect(2*x*(i+1), y, 30, 30, 10, 10);
-   g2d.drawString(""+pila.getNodos().get(i), 2*x*(i+1)+12, y+20);
-  }
-  
-  
- }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g); 
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(0, 0, getWidth(), getHeight()); 
+
+        g2d.setColor(Color.BLACK);
+        g2d.setStroke(new BasicStroke(2));
+
+        g2d.drawString("tope", 2*x + 10, y - 10);
+
+        ArrayList nodos = pila.getNodos();
+
+        for (int i = 0; i < nodos.size(); i++) {
+            int rectX = 2*x*(i+1);
+            g2d.drawRoundRect(rectX, y, 30, 30, 10, 10);
+            g2d.drawString("" + nodos.get(i), rectX + 10, y + 20);
+        }
+    }
+
 
     
     /**
