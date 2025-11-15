@@ -1,59 +1,47 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package dibujo;
+package programas;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import pilas.Pila;
+import javax.swing.JFrame;
 
 /**
  *
- * @author Noemí
+ * @author crist
  */
-public class PanelPila extends javax.swing.JPanel {
+public class ArbolPane extends javax.swing.JPanel {
 
-    public int x=20;
-    public int y=100;
-    public Pila pila;
-    
     /**
-     * Creates new form PanelPila
-     * @param p
+     * Creates new form ArbolPane
      */
-    public PanelPila(Pila p) {
+    public ArbolPane() {
         initComponents();
-        pila = p;
     }
 
+    
     @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g); 
-
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.WHITE);
-        g2d.fillRect(0, 0, getWidth(), getHeight()); 
-
-        g2d.setColor(Color.BLACK);
-        g2d.setStroke(new BasicStroke(2));
-
-        g2d.drawString("tope", 2*x + 10, y - 10);
-
-        ArrayList nodos = pila.getNodos();
-
-        for (int i = 0; i < nodos.size(); i++) {
-            int rectX = 2*x*(i+1);
-            g2d.drawRoundRect(rectX, y, 30, 30, 10, 10);
-            g2d.drawString("" + nodos.get(i), rectX + 10, y + 20);
-        }
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        
+        Graphics2D g2d = (Graphics2D)g;
+    
+       // fillOval(x,y, ancho, alto)
+        g2d.fillOval(getWidth()/2, 10, 30, 30);
+        
+        
+        
+       // drawLine(Px1,Py1, Px2, Py2)
+       // Dibujar linea de Punto(x1,y1) a Punto(x2,y2)
+        g2d.drawLine(getWidth()/2,50, (getWidth()/2)-30, 70);
+        
+        g2d.drawLine(getWidth()/2,50, (getWidth()/2)+30, 70);
+        
+    
     }
-
-
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,6 +64,16 @@ public class PanelPila extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public static void main(String[] args){
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400,400);
+        frame.add(new ArbolPane());
+        frame.setVisible(true);
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

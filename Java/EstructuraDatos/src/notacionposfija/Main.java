@@ -86,8 +86,7 @@ public class Main {
                 }
             }
         }   
-    }
-        // vaciar pila (sin meter '(')
+    }        // vaciar pila (sin meter '(')
         while (!s.empty()) {
             char top = s.pop();
             if (top != '(' && top != ')') expr += top;
@@ -95,7 +94,8 @@ public class Main {
 
         return expr;
     }
-}
+}   
+ 
     public static void main(String[] args) {
         System.out.println(conversionInPost("(-b+((b^2)-4*a*c)^(1/2))/(2*a)"));
     }
