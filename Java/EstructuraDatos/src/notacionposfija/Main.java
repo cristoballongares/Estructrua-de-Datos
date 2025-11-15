@@ -85,6 +85,8 @@ public class Main {
             else {
                 // ignorar caracteres desconocidos
             }
+            }
+        }   
         }
 
         // vaciar pila (sin meter '(')
@@ -94,8 +96,8 @@ public class Main {
         }
 
         return expr;
-    }
-    }
+        }   
+ 
     public static void main(String[] args) {
         
            
